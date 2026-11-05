@@ -35,7 +35,7 @@ Nenhuma entrada acontece por impulso. Nenhuma regra de risco é negociável. E t
 O ciclo de operação, ponta a ponta:
 
 1. **Coleta contínua** - ticks, candles e notícias chegam sem parar, direto da fonte, por código.
-2. **Filtro numérico** - indicadores e previsão de séries temporais descartam a maioria dos ativos, sem gastar IA.
+2. **Filtro numérico** - indicadores descartam a maioria dos ativos, sem gastar IA.
 3. **Portões** - payout mínimo, janela de notícia forte, limites do dia. O que não passa, nem vira candidato.
 4. **Debate** - agentes de IA a favor e contra justificam o candidato com dados.
 5. **Decisão** - votos ponderados pelo placar de acerto de cada agente.
@@ -68,39 +68,49 @@ O ciclo de operação, ponta a ponta:
 | Camada | Ferramentas |
 | --- | --- |
 | Motor | Python assíncrono · FastAPI |
-| Dados e execução | Deriv API (WebSocket oficial) · ccxt |
-| Análise numérica | pandas-ta · TimesFM (previsão de séries temporais do Google, em CPU) |
+| Dados e execução | Deriv API (WebSocket oficial) · ccxt (fase de cripto) |
+| Análise numérica | pandas-ta · previsão de séries temporais (TimesFM/Chronos, previsto) |
 | Memória | SQLite com journal completo |
 | Painel | Next.js como PWA, direto no celular |
 | Alertas | WhatsApp |
 | Hospedagem | Render |
 | Construção | Agentes de IA de código (Claude Code, Codex) sob direção e revisão humana, módulo por módulo, com suíte de testes própria |
 
-## 🌐 Projetos open source em que nos apoiamos
+## 🌐 Open source: apoio, inspiração e referência
 
-O Omni DayT existe de pé sobre projetos abertos. Nada deles é distribuído aqui - só crédito e link.
+O Omni DayT existe de pé sobre projetos abertos. Nada deles é distribuído aqui - só crédito e link. Cada um entra de um jeito:
 
-**Uso ativo no motor**
+**Rodando no motor hoje**
 
 - [Deriv API](https://developers.deriv.com) (Deriv, termos da Deriv) - dados de mercado e execução de ordens por WebSocket oficial.
-- [ccxt](https://github.com/ccxt/ccxt) (MIT) - padroniza dados e ordens em exchanges de cripto.
 - [pandas-ta](https://github.com/twopirllc/pandas-ta) (twopirllc, MIT) - indicadores técnicos de análise.
-- [TimesFM](https://github.com/google-research/timesfm) (Google Research, código Apache-2.0) - previsão de séries temporais em CPU, em versão permitida para uso pessoal e demo.
+
+**Instalado para a próxima fase**
+
+- [ccxt](https://github.com/ccxt/ccxt) (MIT) - padroniza dados e ordens em exchanges de cripto; entra na fase de cripto.
+
+**Estudados para uso futuro**
+
+- [TimesFM](https://github.com/google-research/timesfm) (Google Research, código Apache-2.0) - previsão de séries temporais em CPU.
 - [Chronos-2](https://github.com/amazon-science/chronos-forecasting) (Amazon Science, Apache-2.0) - alternativa aberta de previsão de séries.
+- [FinRL](https://github.com/AI4Finance-Foundation/FinRL) e [FinGPT](https://github.com/AI4Finance-Foundation/FinGPT) (AI4Finance Foundation, MIT) - aprendizado por reforço e LLMs financeiros.
 
-**Inspiração de arquitetura (estudados e adaptados, com link, sem copiar código)**
+**Inspiração de arquitetura (lidos e estudados; o debate de agentes é código nosso, inspirado neles)**
 
-- [ai-hedge-fund](https://github.com/virattt/ai-hedge-fund) (virattt, MIT) - time de agentes de IA com gestor de risco; modelo conceitual do nosso debate a favor e contra.
-- [TradingAgents](https://github.com/TauricResearch/TradingAgents) (Tauric Research, Apache-2.0) - agentes em papéis (analista, pesquisador, trader, risco); referência para a organização do time.
-- [day-trader-skill](https://github.com/jakeschincariol/day-trader-skill) (Jake Schincariol, MIT) - vocabulário e checklists de day trade para agentes; parte do conteúdo virou regra interna dos nossos agentes.
-- [FinRL](https://github.com/AI4Finance-Foundation/FinRL) e [FinGPT](https://github.com/AI4Finance-Foundation/FinGPT) (AI4Finance Foundation, MIT) - aprendizado por reforço e LLMs financeiros; referência para experimentos futuros.
+- [ai-hedge-fund](https://github.com/virattt/ai-hedge-fund) (virattt, MIT) - time de agentes de IA com gestor de risco.
+- [TradingAgents](https://github.com/TauricResearch/TradingAgents) (Tauric Research, Apache-2.0) - agentes em papéis (analista, pesquisador, trader, risco).
+
+**Ferramentas de bastidor (usadas na construção, fora do motor)**
+
+- [day-trader-skill](https://github.com/jakeschincariol/day-trader-skill) (Jake Schincariol, MIT) - skill de vocabulário e checklists de day trade; ajudou a escrever as regras internas dos agentes.
+- tradingview-mcp (vários forks, licença a confirmar) - acesso a dados do TradingView via MCP, estudado como opção futura.
 
 **Somente referência (licença copyleft ou restrita: nunca copiados nem importados no motor)**
 
-- [backtesting.py](https://github.com/kernc/backtesting.py) (kernc, AGPL-3.0) - backtest local sobre dados próprios; ferramenta separada de pesquisa.
-- [MiroFish](https://github.com/666ghj/MiroFish) (666ghj, AGPL-3.0) - simulação de enxames para prever cenários; estudo ocasional antes de eventos grandes.
 - [Freqtrade](https://github.com/freqtrade/freqtrade) (GPL-3.0) - bot de trading open source; referência de arquitetura.
-- [vectorbt](https://github.com/polakowo/vectorbt) (polakowo, licença própria com restrições) - backtest vetorizado, só pesquisa local.
+- [backtesting.py](https://github.com/kernc/backtesting.py) (kernc, AGPL-3.0) - backtest local sobre dados próprios.
+- [vectorbt](https://github.com/polakowo/vectorbt) (polakowo, licença própria com restrições) - backtest vetorizado.
+- [MiroFish](https://github.com/666ghj/MiroFish) (666ghj, AGPL-3.0) - simulação de enxames para prever cenários.
 
 ## 🛡️ As regras que ninguém quebra
 
