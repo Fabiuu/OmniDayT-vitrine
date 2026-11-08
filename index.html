@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Omni Day Trade - agentes de IA que debatem cada trade</title>
+<meta name="description" content="Omni Day Trade: projeto pessoal e experimental. Um time de agentes de IA que debate cada entrada a favor e contra, com gerente de risco com poder de veto. Somente conta demo. Sem promessa de lucro.">
+<meta property="og:title" content="Omni Day Trade">
+<meta property="og:description" content="Um time de agentes de IA que discorda de propósito. Demo primeiro. Prova sempre.">
+<meta property="og:image" content="assets/omnidt-hero.jpg">
+<meta name="theme-color" content="#04080f">
+<style>
+:root{--bg:#04080f;--card:rgba(255,255,255,.04);--line:rgba(120,255,200,.16);--g:#2dffa8;--c:#35d0ff;--t:#e8f1ee;--m:#8fa6a0}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--t);font:17px/1.65 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+a{color:var(--g)}
+nav{position:fixed;top:0;left:0;right:0;z-index:9;display:flex;gap:20px;align-items:center;padding:12px 22px;background:rgba(4,8,15,.72);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+nav b{letter-spacing:.14em;color:var(--g)}nav a{color:var(--m);text-decoration:none;font-size:14px}nav a:hover{color:var(--t)}
+nav .sp{flex:1}.badge{font-size:12px;border:1px solid var(--g);color:var(--g);padding:2px 10px;border-radius:99px}
+.hero{min-height:100vh;display:flex;align-items:center;padding:110px 22px 60px;background:linear-gradient(180deg,rgba(4,8,15,.45),var(--bg)),url(assets/omnidt-hero.jpg) center/cover}
+.w{max-width:1040px;margin:0 auto}
+h1{font-size:clamp(40px,8vw,92px);line-height:1;margin:0 0 18px;letter-spacing:-.02em}
+h1 span{background:linear-gradient(90deg,var(--g),var(--c));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{font-size:clamp(18px,2.4vw,24px);max-width:760px;color:#cfe3dc}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.btn{padding:12px 22px;border-radius:99px;border:1px solid var(--g);color:var(--g);text-decoration:none;font-weight:600}
+.btn.p{background:var(--g);color:#031;}
+section{padding:84px 22px}
+h2{font-size:clamp(28px,4.5vw,46px);margin:0 0 10px;letter-spacing:-.01em}
+.k{color:var(--g);font-size:13px;letter-spacing:.2em;text-transform:uppercase}
+p.s{color:var(--m);max-width:720px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin-top:28px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px}
+.card h3{margin:0 0 6px;font-size:18px;color:var(--g)}.card p{margin:0;color:#c3d4cf;font-size:15px}
+.img{width:100%;border-radius:18px;border:1px solid var(--line);margin-top:28px;display:block}
+.steps{counter-reset:s;list-style:none;padding:0;margin:28px 0 0;display:grid;gap:10px}
+.steps li{counter-increment:s;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 16px 12px 56px;position:relative}
+.steps li:before{content:counter(s);position:absolute;left:16px;top:10px;width:28px;height:28px;border-radius:50%;background:var(--g);color:#031;font-weight:700;text-align:center;line-height:28px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center}
+@media(max-width:760px){.two{grid-template-columns:1fr}nav a.h{display:none}}
+.tag{display:inline-block;font-size:12px;padding:2px 9px;border-radius:99px;margin-left:6px;vertical-align:middle;border:1px solid var(--line);color:var(--m)}
+.tag.ok{color:var(--g);border-color:var(--g)}.tag.wip{color:#ffd166;border-color:#ffd166}
+.ladder{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}.ladder div{padding:10px 16px;border:1px solid var(--line);border-radius:10px;background:var(--card)}
+.ladder .on{border-color:var(--g);color:var(--g)}
+.warn{border:1px solid #ffd166;background:rgba(255,209,102,.06);border-radius:16px;padding:22px}
+footer{padding:50px 22px;text-align:center;color:var(--m);font-size:14px;border-top:1px solid var(--line)}
+.fade{opacity:0;transform:translateY(22px);transition:.8s}.fade.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.fade{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<nav><b>OMNI DAY TRADE</b><span class="badge">DEMO</span><span class="sp"></span><a class="h" href="#o-que-e">O que é</a><a class="h" href="#ecossistema">Ecossistema</a><a class="h" href="#risco">Risco</a><a class="h" href="#status">Status</a></nav>
+
+<header class="hero"><div class="w">
+<span class="badge">PROJETO PESSOAL · SOMENTE CONTA DEMO</span>
+<h1 style="margin-top:18px">Agentes de IA que<br><span>discordam de propósito.</span></h1>
+<p class="lead">Cada oportunidade de trade precisa sobreviver a um debate a favor e contra, a portões de segurança e a um gerente de risco com poder de veto. Tudo registrado. Tudo começa na demo.</p>
+<div class="cta"><a class="btn p" href="#o-que-e">Conhecer o projeto</a><a class="btn" href="#status">Ver o status real</a></div>
+</div></header>
+
+<section id="o-que-e"><div class="w fade">
+<div class="k">O que é</div><h2>Um robô de day trade que desconfia de si mesmo</h2>
+<p class="s">O Omni Day Trade é um sistema experimental de análise e decisão de operações. Em vez de seguir um script fixo, coloca vários agentes de IA para defender e atacar cada entrada com dados. A decisão sai de votos ponderados pelo histórico de acerto de cada agente, e o gerente de risco pode vetar qualquer coisa.</p>
+<div class="grid">
+<div class="card"><h3>Debate</h3><p>Um agente defende a entrada, outro ataca. Rodadas de réplica e um veredito de síntese.</p></div>
+<div class="card"><h3>Funil numérico</h3><p>Indicadores descartam a maioria dos candidatos antes de gastar qualquer chamada de IA.</p></div>
+<div class="card"><h3>Risco inegociável</h3><p>Limites duros, pausa automática, nunca martingale, parada de emergência.</p></div>
+<div class="card"><h3>Memória</h3><p>Cada decisão e resultado entra num journal. Lições alimentam os próximos debates.</p></div>
+</div>
+<img class="img" src="assets/omnidt-debate.jpg" alt="Arte: agentes de IA debatendo uma entrada" loading="lazy">
+</div></section>
+
+<section id="ecossistema" style="background:linear-gradient(180deg,transparent,rgba(45,255,168,.04),transparent)"><div class="w fade">
+<div class="k">Ecossistema</div><h2>Tudo que foi construído até agora</h2>
+<p class="s">O projeto cresceu em camadas. Aqui está o mapa, com o que já existe como código testado e o que ainda está em preparação.</p>
+<img class="img" src="assets/eco-network.jpg" alt="Arte: rede de coletores, modelos e agentes ligados a um núcleo" loading="lazy">
+
+<ol class="steps">
+<li><b>Coleta contínua</b> de ticks, candles e fontes públicas (calendário de juros, indicadores macro, sentimento, notícias por RSS) <span class="tag ok">código testado</span></li>
+<li><b>Histórico e estatísticas</b>: anos de candles públicos de BTC e ETH viram regimes, horários fortes e situações parecidas <span class="tag ok">código testado</span></li>
+<li><b>Indicadores, regime e portões</b> de payout, notícia e limites do dia <span class="tag ok">código testado</span></li>
+<li><b>Time de agentes</b>: analistas determinísticos em modo sombra, debate multi-rodada, síntese, três perfis de risco <span class="tag ok">código testado</span></li>
+<li><b>Memória e journal</b> em SQLite: decisão, resultado, lição, com origem de cada registro <span class="tag ok">código testado</span></li>
+<li><b>Backtest realista</b> com atraso, slippage, comparação contra robô aleatório e holdout intocado <span class="tag ok">código testado</span></li>
+<li><b>Previsão e simulação</b>: TimesFM 3.0 e MiroFish rodaram em testes isolados na nuvem gratuita; ainda não ligados a um ciclo contínuo <span class="tag wip">em validação</span></li>
+<li><b>Ponte PC e nuvem</b>, backup criptografado diário e painel PWA no celular <span class="tag wip">em construção</span></li>
+</ol>
+
+<div class="two" style="margin-top:40px">
+<div><div class="k">Previsão</div><h2 style="font-size:30px">Futuros possíveis, não certezas</h2><p class="s">Modelos de séries temporais e simulação de cenários entram como mais uma opinião para o debate. Nunca como oráculo.</p></div>
+<img class="img" style="margin:0" src="assets/eco-forecast.jpg" alt="Arte: rio de candles se abrindo em futuros possíveis" loading="lazy">
+</div>
+<div class="two" style="margin-top:30px">
+<img class="img" style="margin:0" src="assets/eco-memory.jpg" alt="Arte: memória cristalina dos agentes" loading="lazy">
+<div><div class="k">Memória</div><h2 style="font-size:30px">Aprender com o próprio histórico</h2><p class="s">Cada decisão pendente vira resultado e depois uma lição curta. Nos testes de backtest, só entra o que já existia na data, para não vazar o futuro.</p></div>
+</div>
+<div class="two" style="margin-top:30px">
+<div><div class="k">Nuvem e PC</div><h2 style="font-size:30px">Leve onde precisa, pesado onde é grátis</h2><p class="s">A ideia é manter na nuvem gratuita o que ela sustenta e deixar o computador local só com o mínimo, sob comando manual.</p></div>
+<img class="img" style="margin:0" src="assets/eco-bridge.jpg" alt="Arte: ponte de dados entre um computador e a nuvem" loading="lazy">
+</div>
+<img class="img" src="assets/omnidt-data.jpg" alt="Arte: rio de dados de mercado" loading="lazy">
+</div></section>
+
+<section id="risco"><div class="w fade">
+<div class="k">Risco</div><h2>As regras que ninguém quebra</h2>
+<div class="grid">
+<div class="card"><h3>Limites duros</h3><p>Valor máximo por entrada e perda máxima do dia. Bateu, o motor para sozinho.</p></div>
+<div class="card"><h3>Pausa por sequência</h3><p>Série de perdas no limite pausa tudo automaticamente.</p></div>
+<div class="card"><h3>Sem martingale</h3><p>Nunca, em nenhuma hipótese.</p></div>
+<div class="card"><h3>Janela de notícia</h3><p>Bloqueio automático durante eventos fortes.</p></div>
+<div class="card"><h3>Parada de emergência</h3><p>Botão com alerta imediato no WhatsApp.</p></div>
+<div class="card"><h3>Decisão humana</h3><p>Mudar limite depois de perdas exige reflexão escrita antes.</p></div>
+</div>
+<img class="img" src="assets/omnidt-shield.jpg" alt="Arte: escudo de risco" loading="lazy">
+</div></section>
+
+<section><div class="w fade">
+<div class="k">Método</div><h2>Prova antes de dinheiro</h2>
+<p class="s">Centenas de operações em demo antes de qualquer conclusão. Intervalo de confiança, dados separados para o teste final e comparação contra um robô aleatório. Se não superar o ponto de equilíbrio, o projeto para e reavalia.</p>
+<div class="ladder"><div class="on">1 · Observar</div><div>2 · Sugerir</div><div>3 · Autônomo na demo</div><div>4 · Real: só com provas e OK explícito</div></div>
+<img class="img" src="assets/omnidt-roadmap.jpg" alt="Arte: roadmap" loading="lazy">
+</div></section>
+
+<section id="status"><div class="w fade">
+<div class="k">Status real</div><h2>Onde estamos, sem enfeite</h2>
+<div class="warn">
+<p style="margin-top:0"><b>Em construção, ainda sem operação.</b> O motor existe como código com mais de mil testes automatizados offline. Nenhum ciclo contínuo está operando e a conta demo ainda não gerou resultados que provem alguma coisa.</p>
+<p><b>Não há números de retorno aqui porque nenhum existe.</b> Nada nesta página é promessa de lucro nem recomendação de investimento.</p>
+<p style="margin-bottom:0">Opções binárias envolvem risco alto e não têm corretoras autorizadas pela CVM no Brasil. Este projeto é educacional e experimental e opera somente em conta demo.</p>
+</div>
+</div></section>
+
+<section style="padding-top:20px"><div class="w fade" style="text-align:center">
+<img class="img" src="assets/omnidt-closing.jpg" alt="Arte: demo primeiro, prova sempre" loading="lazy">
+<h2 style="margin-top:30px">Demo primeiro. Prova sempre.</h2>
+<p class="s" style="margin:0 auto">Projeto pessoal de pesquisa e engenharia, não comercial. Idealização, direção e decisões de risco: Fábio Henrique Correa. Construção assistida por agentes de IA de código, módulo a módulo, com testes.</p>
+<div class="cta" style="justify-content:center"><a class="btn" href="https://github.com/Fabiuu/OmniDayT-vitrine">Vitrine no GitHub</a></div>
+</div></section>
+
+<footer>Omni Day Trade · novembro de 2026 · Brasil · O código e os dados ficam em repositório privado. Esta página é só uma vitrine.</footer>
+<script>
+const io=new IntersectionObserver(e=>e.forEach(x=>x.isIntersecting&&x.target.classList.add('in')),{threshold:.08});
+document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+</script>
+</body></html>

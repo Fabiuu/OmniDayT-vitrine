@@ -14,6 +14,8 @@
 
 </div>
 
+### 🌐 Página ao vivo: https://omni-day-trade.vercel.app
+
 ---
 
 ## 🧠 O que é
@@ -111,6 +113,27 @@ O Omni DayT existe de pé sobre projetos abertos. Nada deles é distribuído aqu
 - [backtesting.py](https://github.com/kernc/backtesting.py) (kernc, AGPL-3.0) - backtest local sobre dados próprios.
 - [vectorbt](https://github.com/polakowo/vectorbt) (polakowo, licença própria com restrições) - backtest vetorizado.
 - [MiroFish](https://github.com/666ghj/MiroFish) (666ghj, AGPL-3.0) - simulação de enxames para prever cenários.
+
+## 🧬 O ecossistema construído até agora
+
+![Ecossistema](assets/eco-network.jpg)
+
+| Camada | O que existe | Estado |
+| --- | --- | --- |
+| Coleta | ticks, candles e fontes públicas (juros, macro, sentimento, notícias por RSS) | código testado |
+| Histórico | anos de candles públicos de BTC e ETH, estatísticas e regimes | código testado |
+| Filtros e portões | indicadores, payout, janela de notícia, limites do dia | código testado |
+| Time de agentes | analistas em modo sombra, debate multi-rodada, síntese, três perfis de risco | código testado |
+| Memória | journal em SQLite: decisão, resultado, lição | código testado |
+| Backtest | atraso, slippage, robô aleatório como baseline, holdout intocado | código testado |
+| Previsão e simulação | TimesFM 3.0 e MiroFish rodaram em testes isolados na nuvem gratuita | em validação |
+| Ponte PC e nuvem, backup, painel PWA | módulos em construção | em construção |
+
+![Previsão](assets/eco-forecast.jpg)
+![Memória](assets/eco-memory.jpg)
+![Ponte](assets/eco-bridge.jpg)
+
+> **Honestidade:** "código testado" significa testes automatizados offline. Nenhum ciclo contínuo está operando e não existe resultado de conta demo que prove vantagem.
 
 ## 🛡️ As regras que ninguém quebra
 
